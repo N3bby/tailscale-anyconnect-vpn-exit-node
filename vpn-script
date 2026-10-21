@@ -1,0 +1,43 @@
+#!/bin/sh
+# openconnect runs this when the tunnel comes up or goes down. The stock vpnc-script
+# sets up tun0, the routes the VPN pushes and its DNS servers. On top of that, NAT
+# exit-node traffic into the tunnel and, with ROUTE_MODE=full, send all of it there.
+# With DNS_SERVERS, those go into /etc/resolv.conf instead of the VPN's.
+if [ -n "$DNS_SERVERS" ]; then
+  INTERNAL_IP4_DNS=$DNS_SERVERS
+  unset INTERNAL_IP6_DNS
+fi
+/usr/share/vpnc-scripts/vpnc-script "$@" || exit
+
+STATE=/run/vpn-exit-node/connected
+
+case "$reason" in
+  connect)
+    iptables -t nat -A POSTROUTING -o "$TUNDEV" -j MASQUERADE
+    # Tailscale's own connections stay off the VPN through a rule in entrypoint.sh.
+    if [ "$ROUTE_MODE" = full ]; then
+      # Only traffic from the tailnet; the container's own (Tailscale's included)
+      # keeps using eth0. Priority sits after Tailscale's rules (5210-5270).
+      ip route replace default dev "$TUNDEV" table 100
+      ip rule add iif tailscale0 lookup 100 priority 5300
+    fi
+    routes=""
+    i=0
+    while [ "$i" -lt "${CISCO_SPLIT_INC:-0}" ]; do
+      eval "routes=\"\$routes \$CISCO_SPLIT_INC_${i}_ADDR/\$CISCO_SPLIT_INC_${i}_MASKLEN\""
+      i=$((i + 1))
+    done
+    {
+      echo "address=$INTERNAL_IP4_ADDRESS"
+      echo "dns=$INTERNAL_IP4_DNS"
+      echo "domain=$CISCO_DEF_DOMAIN"
+      echo "routes=${routes# }"
+      echo "since=$(date '+%Y-%m-%d %H:%M')"
+    } > "$STATE"
+    ;;
+  disconnect)
+    iptables -t nat -D POSTROUTING -o "$TUNDEV" -j MASQUERADE 2>/dev/null || true
+    ip rule del priority 5300 2>/dev/null || true
+    rm -f "$STATE"
+    ;;
+esac

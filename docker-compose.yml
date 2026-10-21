@@ -1,0 +1,37 @@
+# A Cisco AnyConnect VPN that signs in through single sign-on, as a Tailscale exit node.
+# The container is its own tailnet node, named TS_HOSTNAME. Its status and sign-in page is
+# http://<TS_HOSTNAME>/ from any device on the tailnet. The settings are in .env: copy
+# .env.example to start. See README.md.
+services:
+  vpn:
+    build: .
+    container_name: ${TS_HOSTNAME:-vpn-exit-node}
+    hostname: ${TS_HOSTNAME:-vpn-exit-node}
+    restart: unless-stopped
+    init: true
+    cap_add: [NET_ADMIN]
+    devices: [/dev/net/tun]
+    ports:
+      - "${TS_PORT:-41642}:${TS_PORT:-41642}/udp"  # tailscaled's port, for direct connections from the LAN (README.md)
+    shm_size: 512m                       # Chromium needs more than Docker's default 64 MB
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv6.conf.all.forwarding: 1
+    environment:
+      VPN_SERVER: ${VPN_SERVER:?set VPN_SERVER in .env}
+      VPN_NAME: ${VPN_NAME:-VPN}
+      ROUTE_MODE: ${ROUTE_MODE:-full}
+      DNS_SERVERS: ${DNS_SERVERS:-}
+      AUTO_CONNECT: ${AUTO_CONNECT:-true}
+      TS_HOSTNAME: ${TS_HOSTNAME:-vpn-exit-node}
+      TS_AUTHKEY: ${TS_AUTHKEY:-}
+      TS_PORT: ${TS_PORT:-41642}
+      TS_LAN_ADDRESS: ${TS_LAN_ADDRESS:-}
+      TZ: ${TZ:-UTC}
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      - browser:/var/lib/vpn-exit-node   # keeps the sign-in, so reconnects don't need you
+
+volumes:
+  tailscale-state:
+  browser:

@@ -1,0 +1,5 @@
+# Holds TS_AUTHKEY (a Tailscale auth key) and other local settings; never commit it.
+.env
+
+# Python bytecode, from running web.py outside the container.
+__pycache__/

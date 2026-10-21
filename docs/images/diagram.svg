@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1390 540" width="1390" height="540" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<!-- How the VPN exit node works. The README shows diagram.png, this rendered at 2x. -->
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker>
+<marker id="amber" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d97706"/></marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity=".08"/></filter>
+<style>
+.title { font-size:16px; font-weight:650; fill:#0f172a; }
+.sub { font-size:12.5px; fill:#64748b; }
+.group { font-size:12px; font-weight:700; letter-spacing:.08em; fill:#475569; }
+.label { font-size:13px; font-weight:600; }
+.box { fill:#fff; stroke:#e2e8f0; stroke-width:1.5; filter:url(#shadow); }
+</style>
+</defs>
+<rect width="1390" height="540" rx="20" fill="#fff"/>
+<rect x="30" y="60" width="200" height="400" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/><text x="130.0" y="94" text-anchor="middle" class="group">YOUR DEVICES</text><text x="130.0" y="113" text-anchor="middle" class="sub">anywhere</text>
+<rect x="60" y="140" width="140" height="96" rx="14" class="box"/><g transform="translate(130.0 172)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-12" y="-9" width="24" height="16" rx="2"/><path d="M-16 10h32l-3 3h-26z"/></g><text x="130.0" y="208" text-anchor="middle" class="title">Laptop</text>
+<rect x="60" y="256" width="140" height="96" rx="14" class="box"/><g transform="translate(130.0 288)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-7" y="-12" width="14" height="24" rx="3"/><path d="M-2 8h4"/></g><text x="130.0" y="324" text-anchor="middle" class="title">Phone</text>
+<text x="130" y="388" text-anchor="middle" class="sub">Tailscale, with this</text>
+<text x="130" y="405" text-anchor="middle" class="sub">node as exit node</text>
+<rect x="290" y="40" width="560" height="440" rx="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/><text x="316" y="74" text-anchor="start" class="group">THIS CONTAINER</text><text x="316" y="93" text-anchor="start" class="sub">on your laptop, or another device you trust</text>
+<rect x="316" y="150" width="220" height="96" rx="14" class="box"/><circle cx="342" cy="176" r="2.6" fill="#0f172a" opacity="1"/><circle cx="350" cy="176" r="2.6" fill="#0f172a" opacity="1"/><circle cx="358" cy="176" r="2.6" fill="#0f172a" opacity="1"/><circle cx="342" cy="184" r="2.6" fill="#0f172a" opacity="0.22"/><circle cx="350" cy="184" r="2.6" fill="#0f172a" opacity="1"/><circle cx="358" cy="184" r="2.6" fill="#0f172a" opacity="0.22"/><circle cx="342" cy="192" r="2.6" fill="#0f172a" opacity="0.22"/><circle cx="350" cy="192" r="2.6" fill="#0f172a" opacity="1"/><circle cx="358" cy="192" r="2.6" fill="#0f172a" opacity="0.22"/><text x="374" y="190" class="title">Tailscale</text><text x="338" y="220" class="sub">exit node on your tailnet</text>
+<rect x="616" y="150" width="210" height="96" rx="14" class="box"/><g transform="translate(650 184)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-9" y="-3" width="18" height="14" rx="3"/><path d="M-5.5 -3v-4a5.5 5.5 0 0 1 11 0v4"/></g><text x="674" y="190" class="title">VPN client</text><text x="638" y="220" class="sub">openconnect (AnyConnect)</text>
+<rect x="436" y="340" width="390" height="104" rx="14" class="box"/><g transform="translate(470 374)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-12" y="-10" width="24" height="20" rx="3"/><path d="M-12 -4h24"/><path d="M-8 -7h.5M-5 -7h.5"/></g><text x="494" y="380" class="title">Status page and sign-in browser</text><text x="458" y="410" class="sub">http://&lt;node&gt;/ shows how the VPN is doing.</text><text x="458" y="427" class="sub">The sign-in runs in Chromium, seen with noVNC.</text>
+<rect x="940" y="150" width="200" height="96" rx="14" class="box"/><g transform="translate(974 184)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-11" y="-11" width="22" height="9" rx="2"/><rect x="-11" y="2" width="22" height="9" rx="2"/><path d="M-6 -6.5h.5M-6 6.5h.5"/></g><text x="998" y="190" class="title">VPN server</text><text x="962" y="220" class="sub">your organisation's</text>
+<rect x="1230" y="96" width="130" height="84" rx="14" class="box"/><g transform="translate(1295.0 128)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-12 11v-15l8 -5v20M-4 11v-11l9 -5v16M5 11v-9l7 3v6M-14 11h28"/></g><text x="1295.0" y="164" text-anchor="middle" class="title">Its networks</text>
+<rect x="1230" y="216" width="130" height="84" rx="14" class="box"/><g transform="translate(1295.0 248)" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle r="11"/><path d="M-11 0h22M0 -11c-5.5 6 -5.5 16 0 22M0 -11c5.5 6 5.5 16 0 22"/></g><text x="1295.0" y="284" text-anchor="middle" class="title">The internet</text>
+<path d="M200 198.0H308" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<path d="M200 304.0C252 304.0 252 208.0 286 208.0H308" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<path d="M536 198.0H608" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<path d="M826 198.0H932" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<path d="M1140 190.0C1176 190.0 1176 138.0 1200 138.0H1222" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<path d="M1140 206.0C1176 206.0 1176 258.0 1200 258.0H1222" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#blue)"/>
+<text x="260" y="186.0" text-anchor="middle" class="label" fill="#2563eb">Tailscale</text>
+<text x="895" y="186.0" text-anchor="middle" class="label" fill="#2563eb">VPN tunnel</text>
+<path d="M200 334C320 334 330 392.0 406 392.0H428" fill="none" stroke="#d97706" stroke-width="2.4" stroke-dasharray="7 6" marker-end="url(#amber)"/>
+<path d="M721.0 340V254" fill="none" stroke="#d97706" stroke-width="2.4" stroke-dasharray="7 6" marker-end="url(#amber)"/>
+<text x="330" y="430" text-anchor="middle" class="label" fill="#d97706">sign in when it asks</text>
+<text x="709.0" y="290" text-anchor="end" class="label" fill="#d97706">hands over the</text>
+<text x="709.0" y="307" text-anchor="end" class="label" fill="#d97706">VPN session</text>
+<g transform="translate(290 514)"><path d="M0 0h34" stroke="#2563eb" stroke-width="2.4"/><text x="44" y="4.5" class="sub">your traffic</text><path d="M150 0h34" stroke="#d97706" stroke-width="2.4" stroke-dasharray="7 6"/><text x="194" y="4.5" class="sub">signing in, only when the VPN asks for it</text></g>
+</svg>
